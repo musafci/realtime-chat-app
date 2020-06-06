@@ -21,10 +21,20 @@
 
             <div class="offset-3 col-6">
                 
-                <li class="list-group-item active">Realtime Chat</li>
-                
+                <li class="list-group-item active">
+                    Realtime Chat Room
+                    <span class="badge badge-pill badge-success">@{{ numberOfUsers }}</span>
+                </li>
+
+                <div class="badge badge-pill badge-success">@{{ typing }}</div>
                 <ul class="list-group" v-chat-scroll="{always: true, smooth: true, scrollonremoved:true, smoothonremoved: true}">
-                    <message v-for="value in chat.message" :key="value.index" color="success">
+                    <message 
+                    v-for="value,index in chat.message" 
+                    :key="value.index" 
+                    :color="chat.color[index]"
+                    :user="chat.user[index]"
+                    :time="chat.time[index]"
+                    >
                         @{{ value }}
                     </message>                    
                 </ul>
